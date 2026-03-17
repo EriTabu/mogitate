@@ -32,9 +32,10 @@ border:5px solid #2b7cff;
 <div style="display:flex; gap:60px; align-items:flex-start; margin-top:30px;">
 
 <!-- 左側画像 -->
+
 <div>
 
-<img src="/images/{{ $product->image }}" width="300">
+<img src="{{ asset('images/' . $product->image) }}" width="300">
 
 <br><br>
 
@@ -50,19 +51,21 @@ border:5px solid #2b7cff;
 <br>
 
 @error('image')
+
 <p style="color:red; font-size:14px; margin-top:6px;">商品画像を登録してください</p>
 <p style="color:red; font-size:14px; margin-top:2px;">「.png」または「.jpeg」形式でアップロードしてください</p>
 @enderror
 
 </div>
 
-
 <!-- 右側フォーム -->
+
 <div style="width:400px;">
 
 <p>商品名</p>
 
 @error('name')
+
 <p style="color:red;">{{ $message }}</p>
 @enderror
 
@@ -71,10 +74,10 @@ name="name"
 value="{{ old('name',$product->name) }}"
 style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
 
-
 <p style="margin-top:20px;">値段</p>
 
 @if($errors->has('price'))
+
 <p style="color:red;">値段を入力してください</p>
 <p style="color:red;">数値で入力してください</p>
 <p style="color:red;">0～10000円以内で入力してください</p>
@@ -85,41 +88,44 @@ name="price"
 value="{{ old('price',$product->price) }}"
 style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
 
-
 <p style="margin-top:20px;">季節</p>
 
 <div class="season-group">
 
+@php
+$seasons = explode('、', $product->season);
+@endphp
+
 <label>
 <input type="checkbox" name="season[]" value="春"
-{{ str_contains($product->season,'春') ? 'checked' : '' }}>
+{{ in_array('春', $seasons) ? 'checked' : '' }}>
 春
 </label>
 
 <label style="margin-left:20px;">
 <input type="checkbox" name="season[]" value="夏"
-{{ str_contains($product->season,'夏') ? 'checked' : '' }}>
+{{ in_array('夏', $seasons) ? 'checked' : '' }}>
 夏
 </label>
 
 <label style="margin-left:20px;">
 <input type="checkbox" name="season[]" value="秋"
-{{ str_contains($product->season,'秋') ? 'checked' : '' }}>
+{{ in_array('秋', $seasons) ? 'checked' : '' }}>
 秋
 </label>
 
 <label style="margin-left:20px;">
 <input type="checkbox" name="season[]" value="冬"
-{{ str_contains($product->season,'冬') ? 'checked' : '' }}>
+{{ in_array('冬', $seasons) ? 'checked' : '' }}>
 冬
 </label>
 
 </div>
 
 @error('season')
+
 <p style="color:red;">{{ $message }}</p>
 @enderror
-
 
 <p style="margin-top:20px;">商品説明</p>
 
@@ -129,10 +135,10 @@ style="width:100%; height:120px; padding:10px; border:1px solid #ddd; border-rad
 >{{ old('description',$product->description) }}</textarea>
 
 @if($errors->has('description'))
+
 <p style="color:red;">商品説明を入力してください</p>
 <p style="color:red;">120文字以内で入力してください</p>
 @endif
-
 
 <br><br>
 
@@ -140,14 +146,12 @@ style="width:100%; height:120px; padding:10px; border:1px solid #ddd; border-rad
 
 <a href="/products/{{ $product->id }}"
 style="padding:10px 40px; background:#eee; text-decoration:none; color:black; border-radius:6px;">
-戻る
-</a>
+戻る </a>
 
 <button
 type="submit"
 style="padding:10px 40px; background:#f5b800; border:none; border-radius:6px;">
-変更を保存
-</button>
+変更を保存 </button>
 
 </div>
 
@@ -156,7 +160,6 @@ style="padding:10px 40px; background:#f5b800; border:none; border-radius:6px;">
 </div>
 
 </form>
-
 
 <form action="/products/{{ $product->id }}" method="POST"
 style="margin-top:20px; text-align:right;">
@@ -167,8 +170,7 @@ style="margin-top:20px; text-align:right;">
 <button
 onclick="return confirm('本当に削除しますか？')"
 style="background:none; border:none; font-size:22px; color:red;">
-🗑
-</button>
+🗑 </button>
 
 </form>
 

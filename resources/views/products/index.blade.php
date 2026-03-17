@@ -5,10 +5,9 @@
 <style>
 
 /* 現在ページをオレンジ色 */
-
 .page-number.active{
-background:#f7b500;
-color:white;
+    background:#f7b500;
+    color:white;
 }
 
 </style>
@@ -72,7 +71,7 @@ value="{{ request('keyword') }}">
 
 <div class="card">
 
-<img src="/images/{{ $product->image }}">
+<img src="{{ asset('images/' . $product->image) }}" alt="">
 
 <div class="card-body">
 
@@ -139,8 +138,8 @@ const keyword = document.getElementById("keyword").value.trim();
 const error = document.getElementById("search-error");
 
 if(keyword === ""){
-error.style.display = "block";
-return false;
+    error.style.display = "block";
+    return false;
 }
 
 error.style.display = "none";

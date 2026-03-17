@@ -224,8 +224,7 @@ mogitateは、商品情報を管理するためのWebアプリケーションで
 
 ## ER図
 
-![ER図](images/er.png)
-
+[ER図](docs/er.png)
 
 
 ## 作成者

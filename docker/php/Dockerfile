@@ -10,3 +10,5 @@ RUN apt-get update \
   libfreetype6-dev
 
 RUN docker-php-ext-install pdo_mysql
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

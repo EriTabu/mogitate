@@ -38,3 +38,5 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mysql
+
+      
